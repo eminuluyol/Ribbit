@@ -72,8 +72,15 @@
             android:background="#27ae60"
             android:padding="12dp"
             android:text="@string/sign_up_text"/>
-
-
     </LinearLayout>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avloadingIndicatorView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:visibility="invisible"
+        app:indicator="BallTrianglePath"
+        android:layout_centerInParent="true"
+        app:indicator_color="#f1c40f" />
 
 </RelativeLayout>

@@ -3,8 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.taurus.ribbit.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_camera"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/menu_camera_label"
+        android:icon="@drawable/ic_photo_camera_white_24dp"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_logout"
+        android:orderInCategory="100"
+        android:title="@string/menu_logout_label"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_edit_friends"
+        android:orderInCategory="100"
+        android:title="@string/menu_edit_friends_label"
+        app:showAsAction="never"/>
+
+
 </menu>

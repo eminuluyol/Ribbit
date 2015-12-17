@@ -9,4 +9,37 @@
     <string name="user_name_hint">User Name</string>
     <string name="email_hint">E-Mail</string>
     <string name="sign_up_text">Sign Up</string>
+    <string name="tab_inbox">INBOX</string>
+    <string name="tab_friends">FRIDENDS</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="signup_error_message">Please make sure you fill in every detail!</string>
+    <string name="signup_error_title">Ooops!</string>
+    <string name="login_error_message">Please make sure you fill in every detail!</string>
+    <string name="login_error_title">Ooops!</string>
+    <string name="menu_logout_label">Log out</string>
+    <string name="text_no_message">No new messages!</string>
+    <string name="text_no_new_friends">No new friends :(</string>
+    <string name="menu_edit_friends_label">Edit Friends</string>
+    <string name="title_activity_edit_friends">Edit Friend</string>
+    <string name="error_title">We\'re sorry!</string>
+    <string name="menu_camera_label">Camera</string>
+    <string name="error_external_storage">There was a problem accesing your device\'s external storage</string>
+    <string name="general_error">Sorry. There was an error!</string>
+    <string name="video_file_size_warning">The selected video must be less than 10 MB</string>
+    <string name="error_opening_file">There was a problem with the selected file!</string>
+    <string name="error_file_size_too_large">Selected file is too large! Select a new file!</string>
+    <string-array name="camera_choices">
+        <item>Take Picture</item>
+        <item>Take Video</item>
+        <item>Choose Picture</item>
+        <item>Choose Video</item>
+    </string-array>
+    <string name="title_activity_recipients">Choose Recipients</string>
+    <string name="empty_recipients_list_message">Choose some friends first!</string>
+    <string name="menu_send_label">Send</string>
+    <string name="error_selecting_file">There was an error  with the file selected. Please select a different  file.</string>
+    <string name="error_selecting_file_title">We\'re sorry!</string>
+    <string name="success_message">Message sent!</string>
 </resources>
