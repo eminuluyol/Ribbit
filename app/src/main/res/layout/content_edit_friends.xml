@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.taurus.ribbit.EditFriendsActivity"
+    tools:showIn="@layout/activity_edit_friends">
+
+    <com.dodola.listview.extlib.ListViewExt
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        android:layout_centerHorizontal="true" />
+
+    <!-- Progress Bar -->
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avloadingIndicatorView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:visibility="invisible"
+        app:indicator="BallTrianglePath"
+        android:layout_centerInParent="true"
+        app:indicator_color="#f1c40f" />
+
+</RelativeLayout>

@@ -1,0 +1,11 @@
+JvmtiExport can_access_local_variables 0
+JvmtiExport can_hotswap_or_post_breakpoint 0
+JvmtiExport can_post_on_exceptions 0
+# 116 ciObject found
+ciMethod com/android/dx/rop/type/TypeBearer getType ()Lcom/android/dx/rop/type/Type; 0 0 1 0 -1
+ciMethod com/android/dx/cf/code/BaseMachine getLocalTarget (Z)Lcom/android/dx/rop/code/RegisterSpec; 4105 1 5637 0 -1
+ciMethod com/android/dx/cf/code/BaseMachine throwLocalMismatch (Lcom/android/dx/rop/type/TypeBearer;Lcom/android/dx/rop/type/TypeBearer;)V 0 0 1 0 -1
+ciMethod com/android/dx/rop/code/RegisterSpec getType ()Lcom/android/dx/rop/type/Type; 4097 1 5397 0 -1
+ciMethod com/android/dx/rop/code/RegisterSpec withType (Lcom/android/dx/rop/type/TypeBearer;)Lcom/android/dx/rop/code/RegisterSpec; 697 1 480 0 -1
+ciMethod com/android/dx/cf/code/Merger isPossiblyAssignableFrom (Lcom/android/dx/rop/type/TypeBearer;Lcom/android/dx/rop/type/TypeBearer;)Z 4105 1 4384 0 -1
+ciMethodData com/android/dx/cf/code/BaseMachine getLocalTarget (Z)Lcom/android/dx/rop/code/RegisterSpec; 2 5641 orig 264 216 160 119 97 0 0 0 0 192 135 29 6 0 0 0 0 8 4 0 0 88 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 65 160 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 19 0 2 0 0 0 184 2 0 0 255 255 255 255 7 0 4 0 0 0 0 0 data 87 0x40007 0x108 0x20 0x12ff 0xe0007 0x108 0x138 0x0 0x190002 0x0 0x1e0005 0x0 0x0 0x0 0x0 0x0 0x250007 0x0 0x38 0x0 0x2a0003 0x0 0x18 0x2f0005 0x0 0x0 0x0 0x0 0x0 0x340005 0x0 0x0 0x0 0x0 0x0 0x370005 0x0 0x0 0x0 0x0 0x0 0x3a0002 0x0 0x460005 0xc 0x9941f60 0x42 0x9942010 0xba 0x500005 0x2b 0x9941a30 0xdd 0x0 0x0 0x580007 0x46 0x70 0xc2 0x5c0007 0x60 0x50 0x62 0x640005 0x11 0x9941a30 0x51 0x0 0x0 0x700002 0x46 0x730007 0x46 0x30 0x0 0x790002 0x0 0x830007 0x36 0x50 0x10 0x8c0005 0x4 0x9941a30 0xc 0x0 0x0 oops 5
