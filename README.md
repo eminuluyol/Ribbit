@@ -29,7 +29,7 @@ public class RibbitApplication extends Application {
 }
 
 ```
-Application class is the first class when your app is run. So if you do initializing step in here, that provides you to connect Parse cloud before any other steps.
+Application class is the first class that runs when your app is run. So if you do initializing step in here, that provides you to connect Parse cloud before any other steps.
 
 
 ## Screens
