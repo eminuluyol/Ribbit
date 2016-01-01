@@ -8,14 +8,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
-import com.dodola.listview.extlib.ListViewExt;
+import com.github.ksoichiro.android.observablescrollview.ObservableGridView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
+import com.taurus.ribbit.adapters.FriendsGridViewAdapter;
 
 import java.util.List;
 
@@ -23,12 +23,12 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FriendsFragment extends Fragment {
+public class FriendsFragment extends BaseFragment {
 
 
     private static final String TAG = FriendsFragment.class.getSimpleName() ;
     protected List<ParseUser> mFriends;
-    protected ListViewExt mListView;
+    protected ObservableGridView mGridView;
     protected ParseRelation<ParseUser> mFriendsRelation;
     protected ParseUser mCurrentUser;
 
@@ -45,15 +45,18 @@ public class FriendsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_friends, container, false);
-        
+        View rootView = inflater.inflate(R.layout.user_grid, container, false);
+
+        mGridView = (ObservableGridView) rootView.findViewById(R.id.grid_view_friends);
+        mGridView.setScrollViewCallbacks(this);
+
         return rootView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        startAnim();
+        //startAnim();
         mCurrentUser = ParseUser.getCurrentUser();
         mFriendsRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
         //Start the progress animation
@@ -63,7 +66,7 @@ public class FriendsFragment extends Fragment {
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> friends, ParseException e) {
-                 stopAnim();
+                 //stopAnim();
 
                 if (e == null) {
                     mFriends = friends;
@@ -73,10 +76,15 @@ public class FriendsFragment extends Fragment {
                         usernames[i] = user.getUsername();
                         i++;
                     }
-                    mListView = (ListViewExt) getActivity().findViewById(R.id.friends_list_view);
-                    mListView.setAdapter(new ArrayAdapter<String>(
-                            getContext(), android.R.layout.simple_list_item_1,
-                            usernames));
+                    if (mGridView.getAdapter() == null) {
+                        FriendsGridViewAdapter adapter = new FriendsGridViewAdapter(getActivity()
+                                ,R.layout.grid_view_item, mFriends);
+                        mGridView.setAdapter(adapter);
+
+                    } else {
+                        //refill the adapter
+                        ((FriendsGridViewAdapter)mGridView.getAdapter()).refill(mFriends);
+                    }
                 } else {
                     Log.e(TAG, e.getMessage());
                     //Sets and creates an Alert Dialog to show user if he/she forgets to fill in.

@@ -5,14 +5,30 @@
     tools:context="com.taurus.ribbit.InboxFragment">
 
 
-
-    <com.dodola.listview.extlib.ListViewExt
-        android:id="@+id/inbox_list_view"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swiper_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_height="match_parent">
 
+        <!--<com.dodola.listview.extlib.ListViewExt-->
+        <!--android:id="@+id/inbox_list_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@color/light_purple_background"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:paddingBottom="@dimen/inbox_vertical_margin"-->
+        <!--android:clipToPadding="false"/>-->
 
+        <com.github.ksoichiro.android.observablescrollview.ObservableListView
+            android:id="@+id/inbox_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@color/light_purple_background"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/inbox_vertical_margin" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>

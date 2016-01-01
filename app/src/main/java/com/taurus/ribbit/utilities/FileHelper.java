@@ -1,4 +1,4 @@
-package com.taurus.ribbit;
+package com.taurus.ribbit.utilities;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -85,7 +85,7 @@ public class FileHelper {
     public static String getFileName(Context context, Uri uri, String fileType) {
         String fileName = "uploaded_file.";
 
-        if (fileType.equals(ParseConstants.TYPE_IMAGE)) {
+        if (fileType.equals(com.taurus.ribbit.ParseConstants.TYPE_IMAGE)) {
             fileName += "png";
         }
         else {

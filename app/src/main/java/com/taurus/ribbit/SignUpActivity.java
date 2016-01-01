@@ -20,6 +20,7 @@ public class SignUpActivity extends AppCompatActivity {
     protected EditText mPassword;
     protected EditText mEmail;
     protected AppCompatButton mSignUpButton;
+    protected AppCompatButton mCancelButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,8 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().hide();
+
         //It sets the up arrow into action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -34,6 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
         mPassword = (EditText) findViewById(R.id.input_password);
         mEmail = (EditText) findViewById(R.id.input_email);
         mSignUpButton = (AppCompatButton) findViewById(R.id.button_sign_up);
+        mCancelButton = (AppCompatButton) findViewById(R.id.button_cancel);
 
         mSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +94,16 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+        mCancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
+
+
 
    //It gives the going back functionality to the back arrow
     @Override

@@ -1,6 +1,7 @@
 package com.taurus.ribbit;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -11,10 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.dodola.listview.extlib.ListViewExt;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -23,6 +24,8 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import com.taurus.ribbit.adapters.FriendsGridViewAdapter;
+import com.taurus.ribbit.utilities.FileHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,12 +35,13 @@ public class RecipientsActivity extends AppCompatActivity {
     private static final String TAG = RecipientsActivity.class.getSimpleName() ;
 
     protected List<ParseUser> mFriends;
-    protected ListViewExt mListView;
+    protected GridView mGridView;
     protected ParseRelation<ParseUser> mFriendsRelation;
     protected ParseUser mCurrentUser;
     protected MenuItem mSendMenuItem;
     protected Uri mMediaUri;
     protected String mFileType;
+    protected ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +52,15 @@ public class RecipientsActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-         mListView = (ListViewExt) findViewById(android.R.id.list);
+
+        mGridView = (GridView) findViewById(R.id.grid_view_friends);
         //It makes check box choice mode multiple
-         mListView.setChoiceMode(ListViewExt.CHOICE_MODE_MULTIPLE);
+        mGridView.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE);
+        mGridView.setOnItemClickListener(mOnItemClickListener);
+
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setMessage(getString(R.string.sending_message_progress_dialog));
 
         mMediaUri = getIntent().getData();
         mFileType =  getIntent().getExtras().getString(ParseConstants.KEY_FILE_TYPE);
@@ -81,9 +91,15 @@ public class RecipientsActivity extends AppCompatActivity {
                         i++;
                     }
 
-                    mListView.setAdapter(new ArrayAdapter<String>(
-                            RecipientsActivity.this, android.R.layout.simple_list_item_checked,
-                            usernames));
+                    if (mGridView.getAdapter() == null) {
+                        FriendsGridViewAdapter adapter = new FriendsGridViewAdapter(RecipientsActivity.this
+                                ,R.layout.grid_view_item, mFriends);
+                        mGridView.setAdapter(adapter);
+
+                    } else {
+                        //refill the adapter
+                        ((FriendsGridViewAdapter)mGridView.getAdapter()).refill(mFriends);
+                    }
                 } else {
                     Log.e(TAG, e.getMessage());
                     //Sets and creates an Alert Dialog to show user if he/she forgets to fill in.
@@ -96,20 +112,6 @@ public class RecipientsActivity extends AppCompatActivity {
                 }
             }
         });
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (mListView.getCheckedItemCount() > 0) {
-                    mSendMenuItem.setVisible(true);
-                } else {
-                    mSendMenuItem.setVisible(false);
-                }
-
-
-            }
-        });
-
     }
 
     @Override
@@ -128,6 +130,7 @@ public class RecipientsActivity extends AppCompatActivity {
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
             case R.id.action_send:
+                mProgressDialog.show();
                 ParseObject message = createMessage();
                 if(message == null){
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipientsActivity.this);
@@ -138,6 +141,7 @@ public class RecipientsActivity extends AppCompatActivity {
                     dialog.show();
                 }else{
                     send(message);
+
                 }
 
                 return true;
@@ -149,6 +153,7 @@ public class RecipientsActivity extends AppCompatActivity {
         message.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
+                mProgressDialog.dismiss();
                 if(e == null){
                     //success!
                     Toast.makeText(RecipientsActivity.this, R.string.success_message,Toast.LENGTH_LONG).show();
@@ -174,13 +179,15 @@ public class RecipientsActivity extends AppCompatActivity {
         message.put(ParseConstants.KEY_RECIPIENT_IDS,getRecipientsIds());
         message.put(ParseConstants.KEY_FILE_TYPE,mFileType);
 
-        byte[] fileBytes = FileHelper.getByteArrayFromFile(this,mMediaUri);
+        byte[] fileBytes = FileHelper.getByteArrayFromFile(this, mMediaUri);
         if(fileBytes == null) {
             return null;
         }
         else{
             if(mFileType.equals(ParseConstants.TYPE_IMAGE)){
                 fileBytes = FileHelper.reduceImageForUpload(fileBytes);
+
+
             }
 
             String fileName = FileHelper.getFileName(this,mMediaUri,mFileType);
@@ -194,20 +201,34 @@ public class RecipientsActivity extends AppCompatActivity {
 
     protected ArrayList<String> getRecipientsIds() {
         ArrayList<String> recipientIds = new ArrayList<String>();
-        for(int i = 0; i < mListView.getCount(); i++){
-            if(mListView.isItemChecked(i)){
+        for(int i = 0; i < mGridView.getCount(); i++){
+            if(mGridView.isItemChecked(i)){
                recipientIds.add(mFriends.get(i).getObjectId());
             }
         }
         return recipientIds;
     }
 
-    protected void startAnim(){
-        findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);
-    }
+    protected AdapterView.OnItemClickListener mOnItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            if (mGridView.getCheckedItemCount() > 0) {
+                   mSendMenuItem.setVisible(true);
+               }
+            else {
+                   mSendMenuItem.setVisible(false);
+              }
 
-    protected void stopAnim(){
-        findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
-    }
+            ImageView checkImageView = (ImageView)view.findViewById(R.id.check_imageview);
 
+            if (mGridView.isItemChecked(position)) {
+                //add recipient
+                checkImageView.setVisibility(View.VISIBLE);
+
+            } else {
+                //remove recipient
+                checkImageView.setVisibility(View.INVISIBLE);
+            }
+        }
+    };
 }

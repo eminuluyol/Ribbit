@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.taurus.ribbit"
-        minSdkVersion 11
+        minSdkVersion 14
         targetSdkVersion 23
         multiDexEnabled true
         versionCode 1
@@ -41,4 +41,8 @@ dependencies {
     compile 'com.sothree.slidinguppanel:library:3.2.0'
     compile fileTree(include: 'commons-io-2.4.jar', dir: 'libs')
     compile files('libs/commons-io-2.4.jar')
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.github.ksoichiro:android-observablescrollview:1.5.0'
+
 }

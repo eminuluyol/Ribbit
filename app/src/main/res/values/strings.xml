@@ -42,4 +42,11 @@
     <string name="error_selecting_file">There was an error  with the file selected. Please select a different  file.</string>
     <string name="error_selecting_file_title">We\'re sorry!</string>
     <string name="success_message">Message sent!</string>
+    <string name="title_activity_view_image">Ribbit</string>
+    <string name="subtitle">A Self-Destructing Message Android App</string>
+    <string name="Cancel">Cancel</string>
+    <string name="content_desc_message_icon">Message icon</string>
+    <string name="content_dsc_avatar_image">User avatar</string>
+    <string name="content_dsc_user_checkmark">User checkmark</string>
+    <string name="sending_message_progress_dialog">Sending...</string>
 </resources>

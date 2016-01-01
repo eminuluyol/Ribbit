@@ -1,7 +1,7 @@
 package com.taurus.ribbit;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.taurus.ribbit.adapters.TabFragmentAdapter;
 
-import adapters.TabFragmentAdapter;
 
 /**
  * A placeholder fragment containing a simple view.

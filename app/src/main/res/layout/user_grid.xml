@@ -1,14 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.taurus.ribbit.RecipientsActivity"
-    tools:showIn="@layout/activity_recipients">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/light_purple_background"
+    tools:context="com.taurus.ribbit.FriendsFragment">
 
-    <GridView
+    <!--<GridView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:horizontalSpacing="8dp"-->
+        <!--android:numColumns="3"-->
+        <!--android:stretchMode="columnWidth"-->
+        <!--android:padding="8dp"-->
+        <!--android:clipToPadding="false"-->
+        <!--android:verticalSpacing="8dp"-->
+        <!--android:id="@+id/grid_view_friends">-->
+    <!--</GridView>-->
+
+    <com.github.ksoichiro.android.observablescrollview.ObservableGridView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:horizontalSpacing="8dp"
@@ -17,15 +27,15 @@
         android:padding="8dp"
         android:clipToPadding="false"
         android:verticalSpacing="8dp"
-        android:id="@+id/grid_view_friends">
-    </GridView>
+        android:id="@+id/grid_view_friends"/>
+
     <!-- Progress Bar -->
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/avloadingIndicatorView"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:visibility="invisible"
-        app:indicator="LineScale"
+        app:indicator="BallTrianglePath"
         android:layout_centerInParent="true"
         app:indicator_color="#f1c40f" />
 

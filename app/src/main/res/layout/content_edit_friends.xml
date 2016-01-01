@@ -4,15 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="56dp"
+    android:background="@color/light_purple_background"
     tools:context="com.taurus.ribbit.EditFriendsActivity"
     tools:showIn="@layout/activity_edit_friends">
 
-    <com.dodola.listview.extlib.ListViewExt
-        android:id="@android:id/list"
+    <GridView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="56dp"
-        android:layout_centerHorizontal="true" />
+        android:horizontalSpacing="8dp"
+        android:numColumns="3"
+        android:stretchMode="columnWidth"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        android:verticalSpacing="8dp"
+        android:id="@+id/grid_view_friends">
+    </GridView>
 
     <!-- Progress Bar -->
     <com.wang.avi.AVLoadingIndicatorView
