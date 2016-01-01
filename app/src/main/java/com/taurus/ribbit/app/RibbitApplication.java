@@ -13,8 +13,7 @@ public class RibbitApplication extends Application {
     @Override
     public void onCreate(){
         super.onCreate();
-        Parse.initialize(this, "SYfkmeSGtEFetgCNoXn8DV2EZgVWINQGtNna5tyd"
-                , "565U0WxxxF5BBt41DGBgSAXGqHz64Od5A1x4hiba");
+        Parse.initialize(this, id, key);
 
         ParseInstallation.getCurrentInstallation().saveInBackground();
 
